@@ -20,7 +20,8 @@ public:
 public slots:
     void calcular();
     void guardar();
-
+    void nuevo();
+    void abrir();
 
 
 ;

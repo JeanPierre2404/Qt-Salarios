@@ -19,7 +19,10 @@ Principal::Principal(QWidget *parent)
             this, SLOT(close()));
     connect(ui->mnuGuardar, SIGNAL(triggered(bool)),
               this, SLOT(guardar()));
-    //
+    connect(ui->mnuNuevo, SIGNAL(triggered(bool)),
+            this, SLOT(nuevo()));
+    connect(ui->mnuAbrir, SIGNAL(triggered(bool)),
+            this, SLOT(abrir()));
 }
 
 Principal::~Principal()
@@ -95,6 +98,24 @@ void Principal::guardar()
        }
 
        data.close();*/
+}
+
+void Principal::nuevo()
+{
+    ui->outCalcular->setPlainText("");
+}
+
+void Principal::abrir()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,"Abrir",QDir::home().absolutePath(),"Archivo de Texto(*.txt)");
+    QFile file(fileName);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            QString linea = in.readAll();
+            ui->outCalcular->setPlainText(linea);
+        }
+    }
 }
 
 
