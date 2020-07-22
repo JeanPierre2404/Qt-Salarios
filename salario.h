@@ -9,7 +9,7 @@ class Salario : public QObject
 public:
     explicit Salario(QObject *parent = nullptr);
 
-signals:
+
 
 };
 
